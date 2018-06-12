@@ -30,6 +30,7 @@ steps:
   inputs:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)/symbols'
     ArtifactName: Symbols
+    ArtifactType: Container
 
 - task: CopyPublishBuildArtifacts@1
   displayName: Upload Bin to drop
