@@ -25,33 +25,25 @@ steps:
     TargetFolder: '$(Build.ArtifactStagingDirectory)/symbols'
     CleanTargetFolder: true
 
-- task: PublishBuildArtifacts@1
-  displayName: Upload Symbols Artifact
+- task: CopyFiles@2
+  displayName: Collect Packages
   inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)/symbols'
-    ArtifactName: Symbols
-    ArtifactType: Container
+    SourceFolder: 'src/MSBuildLocator'
+    Contents: '**\*.nupkg'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)/pkg'
+    CleanTargetFolder: true
 
-- task: CopyPublishBuildArtifacts@1
-  displayName: Upload Bin to drop
+- task: CopyFiles@2
+  displayName: Collect logs
   inputs:
-    Contents: |
-     src\MSBuildLocator\bin\**
-    ArtifactName: bin
-    ArtifactType: Container
-
-- task: CopyPublishBuildArtifacts@1
-  displayName: Upload NuGet to drop
-  inputs:
-    Contents: |
-     src\MSBuildLocator\bin\$(BuildConfiguration)\*.nupkg
-    ArtifactName: pkg
-    ArtifactType: Container
-
-- task: CopyPublishBuildArtifacts@1
-  displayName: Upload logs to drop
-  inputs:
+    SourceFolder: 'src/MSBuildLocator'
     Contents: '**\*.log'
-    ArtifactName: logs
+    TargetFolder: '$(Build.ArtifactStagingDirectory)/logs'
+    CleanTargetFolder: true
+
+- task: PublishBuildArtifacts@1
+  displayName: Upload Artifacts
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: drop
     ArtifactType: Container
-  condition: succeededOrFailed()
