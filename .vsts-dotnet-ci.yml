@@ -76,4 +76,3 @@ steps:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)/logs'
     ArtifactName: logs
     ArtifactType: Container
-
