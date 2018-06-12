@@ -66,7 +66,7 @@ steps:
 - task: CopyFiles@2
   displayName: Collect logs
   inputs:
-    SourceFolder: 'src/MSBuildLocator'
+    SourceFolder: ''
     Contents: '**\*.log'
     TargetFolder: '$(Build.ArtifactStagingDirectory)/logs'
     CleanTargetFolder: true
