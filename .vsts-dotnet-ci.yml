@@ -1,5 +1,5 @@
 queue:
-  name: VSEng-MicroBuildVS2017
+  name: Hosted VS2017
   condition: succeeded()
   demands: msbuild
 
@@ -14,6 +14,7 @@ steps:
   displayName: Install Signing Plugin
   inputs:
     signType: '$(SignType)'
+  enabled: false
 
 - task: MSBuild@1
   displayName: /t:Pack
@@ -72,4 +73,5 @@ steps:
 
 - task: ms-vseng.MicroBuildTasks.521a94ea-9e68-468a-8167-6dcf361ea776.MicroBuildCleanup@1
   displayName: Execute cleanup tasks
+  enabled: false
 
