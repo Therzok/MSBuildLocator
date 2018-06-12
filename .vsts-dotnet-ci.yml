@@ -16,6 +16,7 @@ steps:
     platform: '$(BuildPlatform)'
     configuration: '$(BuildConfiguration)'
     msbuildArguments: '/t:Pack /restore'
+    createLogFile: true
 
 - task: CopyFiles@2
   displayName: Collect Symbols
