@@ -49,15 +49,6 @@ steps:
     ArtifactType: Container
 
 - task: CopyPublishBuildArtifacts@1
-  displayName: Upload MicroBuildOutputs to drop
-  inputs:
-    CopyRoot: '$(Build.StagingDirectory)\MicroBuild\Output'
-    Contents: '**'
-    ArtifactName: MicroBuildOutputs
-    ArtifactType: Container
-  continueOnError: true
-
-- task: CopyPublishBuildArtifacts@1
   displayName: Upload logs to drop
   inputs:
     Contents: '**\*.log'
