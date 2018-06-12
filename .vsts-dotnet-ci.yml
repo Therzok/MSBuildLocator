@@ -26,10 +26,18 @@ steps:
     CleanTargetFolder: true
 
 - task: CopyFiles@2
+  displayName: Collect Binaries
+  inputs:
+    SourceFolder: 'src/MSBuildLocator'
+    Contents: 'src\MSBuildLocator\bin\**'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)/bin'
+    CleanTargetFolder: true
+
+- task: CopyFiles@2
   displayName: Collect Packages
   inputs:
     SourceFolder: 'src/MSBuildLocator'
-    Contents: '**\*.nupkg'
+    Contents: 'src\MSBuildLocator\bin\$(BuildConfiguration)\*.nupkg'
     TargetFolder: '$(Build.ArtifactStagingDirectory)/pkg'
     CleanTargetFolder: true
 
